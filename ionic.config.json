@@ -1,0 +1,7 @@
+{
+  "name": "made_in_sleep",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
