@@ -1,24 +1,26 @@
 <mainHeader></mainHeader>
 
 <ion-content [fullscreen]="true">
-	<h1>Esto es una prueba</h1>
-	<ion-list>
-		<ion-item>
-			<ion-label>José Luis</ion-label>
-		</ion-item>
-		<ion-item>
-			<ion-label>José Luis</ion-label>
-		</ion-item>
-		<ion-item>
-			<ion-label>José Luis</ion-label>
-		</ion-item>
-		<ion-item>
-			<ion-label>José Luis</ion-label>
-		</ion-item>
-		<ion-item>
-			<ion-label>José Luis</ion-label>
-		</ion-item>
-	</ion-list>
+	<section class="welcomeBoxContainer">
+		<div class="welcomeBox">
+			<h3 innerHTML={{welcomeMessage}}></h3>
+		</div>
+	</section>
+
+	<br>
+	<section class="featuredProducts">
+		<h1 class="featuredProductsTitle">Productos destacados</h1>
+		<div class="featuredProductsDividingLine"></div>
+
+		<section class="featuredProductsListing">
+			<div class="featuredProductItem" *ngFor="let item of items; index as i">
+				<ion-img class="featuredProductImage" src={{item.imgSrc}}></ion-img>
+				<h3 class="featuredProductName">{{item.name}}</h3>
+			</div>
+		</section>
+	</section>
+
+
 </ion-content>
 
 <mainNavbar></mainNavbar>
