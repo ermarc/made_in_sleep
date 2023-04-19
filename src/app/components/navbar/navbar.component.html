@@ -1,11 +1,27 @@
 <ion-footer>
-    <ion-toolbar color="primary">
+    <ion-toolbar class="navbarToolbar" color="primary">
         <div class="navbarContainer">
-          <div class="navbarItem"><h2 class="navbarItemText">inicio</h2></div>
-          <div class="navbarItem"><h2 class="navbarItemText">inicio</h2></div>
-          <div class="navbarItem"><h2 class="navbarItemText">inicio</h2></div>
-          <div class="navbarItem"><h2 class="navbarItemText">inicio</h2></div>
-          <div class="navbarItem"><h2 class="navbarItemText">inicio</h2></div>
+          
+          <div class="navbarItem" (click)="goToHome()">
+            <ion-img class="navbarItemImage" src="/assets/images/navbarIco/home.svg"></ion-img>
+            <h2 class="navbarItemText">Inicio</h2>
+          </div>
+          <div class="navbarItem" (click)="goToSearch()">
+            <ion-img class="navbarItemImage" src="/assets/images/navbarIco/search.svg"></ion-img>
+            <h2 class="navbarItemText">Buscar</h2>
+          </div>
+          <div class="navbarItem" (click)="goToCart()">
+            <ion-img class="navbarItemImage" src="/assets/images/navbarIco/cart.svg"></ion-img>
+            <h2 class="navbarItemText">Carrito</h2>
+          </div>
+          <div class="navbarItem" (click)="goToOrders()">
+            <ion-img class="navbarItemImage" src="/assets/images/navbarIco/orders.svg"></ion-img>
+            <h2 class="navbarItemText">Historial</h2>
+          </div>
+          <div class="navbarItem" (click)="goToProfile()">
+            <ion-img class="navbarItemImage" src="/assets/images/navbarIco/profile.svg"></ion-img>
+            <h2 class="navbarItemText">Perfil</h2>
+          </div>
         </div>
     </ion-toolbar>
 </ion-footer>

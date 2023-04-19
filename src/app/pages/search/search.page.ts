@@ -6,13 +6,13 @@ import { MainHeaderComponent } from 'src/app/components/main-header/main-header.
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+  selector: 'app-search',
+  templateUrl: './search.page.html',
+  styleUrls: ['./search.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent]
 })
-export class ProfilePage implements OnInit {
+export class SearchPage implements OnInit {
 
   constructor() { }
 

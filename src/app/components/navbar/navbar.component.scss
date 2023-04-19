@@ -1,7 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    left: 0;
+}
+
+.navbarToolbar {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
 .navbarContainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.navbarItem {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5%;
+    width: 20%;
+}
+
+.navbarItemImage {
+    height: 25px;
+    text-align: center;
+    margin-top: -0px;
+    filter: invert(100%);
+}
+
+.navbarItemText {
+    font-size: 14px;
+    white-space: nowrap;
 }

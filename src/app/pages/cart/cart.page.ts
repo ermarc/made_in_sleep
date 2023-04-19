@@ -6,13 +6,13 @@ import { MainHeaderComponent } from 'src/app/components/main-header/main-header.
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+  selector: 'app-cart',
+  templateUrl: './cart.page.html',
+  styleUrls: ['./cart.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent]
 })
-export class ProfilePage implements OnInit {
+export class CartPage implements OnInit {
 
   constructor() { }
 
