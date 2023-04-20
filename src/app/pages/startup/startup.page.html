@@ -2,18 +2,38 @@
   <ion-content>
     <ion-img class="hiddenImage" src="/assets/images/shh.webp"></ion-img>
     <swiper-container>
+
       <swiper-slide>
         <ion-img class="sliderImage" src="/assets/images/full_logo.png"></ion-img>
-        <h1>Slide primera</h1>
+        <h1 class="sliderText">¡Sed bienvenidos a Made in Sleep, donde te proporcionamos el mejor material para hacer tus mejores sueños realidad, literalmente!</h1>
       </swiper-slide>
+
       <swiper-slide>
         <ion-img class="sliderImage invertColor" src="/assets/images/navbarIco/home.svg"></ion-img>
-        <h1>Slide segunda</h1>
+        <h1 class="sliderText">Slide segunda. Aquí soltar rollo de la tienda.</h1>
       </swiper-slide>  
+
       <swiper-slide>
-        <ion-img class="sliderImage invertColor" src="/assets/images/navbarIco/orders.svg"></ion-img>
-        <h1>Slide tercera</h1>
+        <ion-img class="sliderImage invertColor" src="/assets/images/navbarIco/search.svg"></ion-img>
+        <h1 class="sliderText">Slide tercera. Aquí soltar rollo de búsqueda.</h1>
       </swiper-slide>
+
+      <swiper-slide>
+        <div class="animatedSliderContent">
+          <ion-img class="smallSliderImage invertColor" src="/assets/images/navbarIco/orders.svg"></ion-img>
+          <ion-img class="smallSliderImage invertColor" src="/assets/images/navbarIco/cart.svg"></ion-img>
+          <ion-img class="smallSliderImage invertColor" src="/assets/images/navbarIco/profile.svg"></ion-img>
+        </div>
+        <h1 class="sliderText">Slide cuarta. Soltar rollo de comunidad, oportunidades y blablabla.</h1>
+      </swiper-slide>
+
+      <swiper-slide>
+        <ion-img class="sliderImage invertColor" src="/assets/images/navbarIco/correct.svg"></ion-img>
+        <h1 class="sliderText">¿Todo listo? ¡A dormir!</h1>
+        <br>
+        <ion-button expand="block" fill="solid" size="large" (click)="endSlider()">Iniciar</ion-button>
+      </swiper-slide>
+
     </swiper-container>
   </ion-content>
 </ion-app>

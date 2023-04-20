@@ -23,13 +23,10 @@ swiper-slide {
 .hiddenImage {
     position: absolute;
     left: 0;
-    right: 0;
+    right: 200px;
     top: 0;
     bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto;
     width: 100px;
     height: 100px;
 }
@@ -42,4 +39,56 @@ swiper-slide {
 
 .invertColor {
     filter: invert(100%);
+}
+
+.sliderText {
+    font-size: 18px;
+    width: 300px;
+    text-align: center;
+}
+
+.animatedSliderContent {
+    width: 500px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.smallSliderImage {
+    width: 85px;
+    height: 85px;
+    animation: littleBounce 2s ease-in-out infinite;
+    transform-origin: 50% 50%;
+}
+
+.smallSliderImage:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.smallSliderImage:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.smallSliderImage:nth-child(3) {
+    animation-delay: 1.5s;
+}
+
+@keyframes littleBounce {
+    0% {
+        transform: translateY(0px) scaleY(100%);
+    } 
+    25% {
+        transform: translateY(-40px) scaleY(110%);
+    }
+    50% {
+        transform: translateY(0px) scaleY(80%);
+    }
+    65% {
+        transform: scaleY(100%);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
