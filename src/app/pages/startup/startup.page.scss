@@ -1,0 +1,45 @@
+ion-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: beige;
+}
+
+swiper-container {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+ 
+swiper-slide {
+    background-color: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hiddenImage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100px;
+    height: 100px;
+}
+
+.sliderImage {
+    width: 500px;
+    height: 200px;
+    margin: 10px;
+}
+
+.invertColor {
+    filter: invert(100%);
+}
