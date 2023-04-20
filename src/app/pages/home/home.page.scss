@@ -45,13 +45,3 @@
     align-self: center;
     margin: 10px;
 }
-
-@keyframes fadeInLeftToRight {
-    from {
-        opacity: 0;
-        transform: translateX(0px);
-    } to {
-        opacity: 1;
-        transform: translateX(15px);
-    }
-}

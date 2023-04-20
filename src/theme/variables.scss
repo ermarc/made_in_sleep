@@ -249,3 +249,13 @@
 //     --ion-card-background: #1e1e1e;
 //   }
 // }
+
+@keyframes fadeInLeftToRight {
+  from {
+      opacity: 0;
+      transform: translateX(0px);
+  } to {
+      opacity: 1;
+      transform: translateX(15px);
+  }
+}
