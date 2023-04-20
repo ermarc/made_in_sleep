@@ -14,6 +14,10 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 })
 export class ProfilePage implements OnInit {
 
+  userImage : string = '/assets/images/userPlaceholder.png';
+  userName : string = 'Cargando...';
+  userDesc : string = 'Cargando...';
+
   constructor() { }
 
   ngOnInit() {

@@ -3,12 +3,18 @@
 
 	<ion-content [fullscreen]="true">
 		<section class="userInfo">
-			<ion-img class="userImage"></ion-img>
+			<ion-img class="userImage" src={{userImage}}></ion-img>
 			<div class="userData">
-				<h1 class="userName">Usuario</h1>
-				<h3 class="userDesc">Descripción</h3>
+				<h1 class="userName">{{userName}}</h1>
+				<h5 class="userDesc">{{userDesc}}</h5>
 			</div>
 		</section>
+
+		<div class="userDividingLineContent">
+		<div class="userDividingLine"></div>
+		</div>
+
+
 	</ion-content>
 
 	<mainNavbar></mainNavbar>
