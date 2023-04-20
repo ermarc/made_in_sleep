@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    left: 0;
+}
+
+.floatingButtonContainer {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 80px;
+}
+
+.floatingButton {
+    width: 80%;
+    height: 40px;
+    border-radius: 20px;
+    background-color: var(--ion-color-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floatingButtonText {
+    font-size: 19px;
+    font-family: mainFontBold;
+    color: var(--ion-color-primary);
+}

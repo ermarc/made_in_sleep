@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'productListing',
@@ -15,8 +16,12 @@ export class ProductListingComponent  implements OnInit {
     products : any = '';
 
 
-    constructor() { }
+    constructor(private router: Router) { }
 
     ngOnInit() {}
+
+    goToProduct() {
+      this.router.navigate(['/product']);
+    }
 
 }

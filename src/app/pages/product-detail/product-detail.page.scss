@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+    left: 0;
+}
+
+.productImage {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    gap: 20px;
+}
+
+.productName {
+    font-size: 33px;
+    font-family: mainFontBold;
+}
+
+.productDesc {
+    margin-left: 13px;
+    font-size: 20px;
+}

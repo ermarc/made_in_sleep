@@ -13,7 +13,8 @@ export const routes: Routes = [
   {
     path: 'profile',
     loadComponent: () => import('./pages/profile/profile.page').then((m) => m.ProfilePage),
-  },  {
+  },
+  {
     path: 'search',
     loadComponent: () => import('./pages/search/search.page').then( m => m.SearchPage)
   },
@@ -24,6 +25,10 @@ export const routes: Routes = [
   {
     path: 'orders',
     loadComponent: () => import('./pages/orders/orders.page').then( m => m.OrdersPage)
+  },
+  {
+    path: 'product',
+    loadComponent: () => import('./pages/product-detail/product-detail.page').then( m => m.ProductDetailPage)
   },
 
 ];

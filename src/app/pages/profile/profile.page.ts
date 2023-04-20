@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { MainHeaderComponent } from 'src/app/components/main-header/main-header.component';
+import { SmallHeaderComponent } from 'src/app/components/small-header/small-header.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 @Component({
@@ -10,7 +10,7 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent]
+  imports: [IonicModule, CommonModule, FormsModule, SmallHeaderComponent, NavbarComponent]
 })
 export class ProfilePage implements OnInit {
 

@@ -1,0 +1,16 @@
+<ion-app>
+    <smallHeader></smallHeader>
+
+    <ion-content>
+        <ion-img class="productImage" src={{productImage}}></ion-img>
+        
+        <section class="productInfo">
+            <h1 class="productName">{{productName}}</h1>
+            <h3 class="productDesc">{{productDesc}}</h3>
+        </section>
+    </ion-content>
+
+    <floatingButton [text]="'Añadir producto al carrito'"></floatingButton>
+
+    <mainNavbar></mainNavbar>
+</ion-app>
