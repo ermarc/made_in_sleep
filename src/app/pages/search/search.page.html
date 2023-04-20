@@ -2,7 +2,9 @@
 	<mainHeader></mainHeader>
 
 	<ion-content [fullscreen]="true">
-		<section class="welcomeBoxContainer"></section>
+		<searchBar (keydown.enter)="startSearch()"></searchBar>
+
+		<productListing [products]='items'></productListing>
 	</ion-content>
 
 	<mainNavbar></mainNavbar>

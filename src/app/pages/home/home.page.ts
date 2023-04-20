@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { MainHeaderComponent } from 'src/app/components/main-header/main-header.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
+import { ProductListingComponent } from 'src/app/components/product-listing/product-listing.component';
 
 @Component({
     selector: 'app-home',
     templateUrl: './home.page.html',
     styleUrls: ['./home.page.scss'],
     standalone: true,
-    imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent]
+    imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent, ProductListingComponent]
 })
 export class HomePage implements OnInit {
 	welcomeMessage : string = '';
@@ -40,6 +41,7 @@ export class HomePage implements OnInit {
 						{name: 'flores12',
 						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
 	]
+	
 
   	constructor() { }
 

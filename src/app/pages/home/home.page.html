@@ -12,14 +12,8 @@
 			<h1 class="featuredProductsTitle">Productos destacados</h1>
 			<div class="featuredProductsDividingLine"></div>
 
-			<section class="featuredProductsListing">
-				<div class="featuredProductItem" *ngFor="let item of items; index as i">
-					<ion-img class="featuredProductImage" src={{item.imgSrc}}></ion-img>
-					<h3 class="featuredProductName">{{item.name}}</h3>
-				</div>
-			</section>
+			<productListing [products]='items'></productListing>
 		</section>
-
 
 	</ion-content>
 

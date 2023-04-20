@@ -1,0 +1,6 @@
+<section class="productsListing">
+  <div class="productItem" *ngFor="let product of products; index as i">
+    <ion-img class="productImage" src={{product.imgSrc}}></ion-img>
+    <h3 class="productName">{{product.name}}</h3>
+  </div>
+</section>
