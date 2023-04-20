@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { PrestaShopService } from 'src/app/services/presta-shop.service';
 
 @Component({
   selector: 'productListing',
@@ -16,12 +17,22 @@ export class ProductListingComponent  implements OnInit {
     products : any = '';
 
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, public prestaShop: PrestaShopService) { }
 
     ngOnInit() {}
 
     goToProduct() {
       this.router.navigate(['/product']);
     }
+
+    getProductImage(product : any) {
+      let productImage : string = '';
+      this.prestaShop.getProductImage(product.id, product.id_default_image).subscribe((response: any) => {
+        productImage = response;
+        console.log(response);
+      })
+
+      return productImage;
+    } 
 
 }

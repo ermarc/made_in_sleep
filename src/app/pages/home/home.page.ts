@@ -5,6 +5,8 @@ import { IonicModule } from '@ionic/angular';
 import { MainHeaderComponent } from 'src/app/components/main-header/main-header.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { ProductListingComponent } from 'src/app/components/product-listing/product-listing.component';
+import { PrestaShopService } from 'src/app/services/presta-shop.service';
+import { get } from 'http';
 
 @Component({
     selector: 'app-home',
@@ -15,6 +17,7 @@ import { ProductListingComponent } from 'src/app/components/product-listing/prod
 })
 export class HomePage implements OnInit {
 	welcomeMessage : string = '';
+	products : any;
 	items: any = 	[
 						{name: 'flores',
 						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
@@ -40,18 +43,25 @@ export class HomePage implements OnInit {
 						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
 						{name: 'flores12',
 						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-	]
+					]
+
 	
 
-  	constructor() { }
+  	constructor(public prestaShop: PrestaShopService) { }
 
-  	ngOnInit() {
-    
-  	}
+  	ngOnInit() { }
 
-	ionViewWillEnter() {
+	async getProducts() {
+		this.prestaShop.getProducts().subscribe((response : any) => {
+			this.products = response.products;
+		});
+	}
+
+	async ionViewWillEnter() {
 		this.pickRandomWelcomeMessage();
+		let temporalProducts : any = await this.getProducts();
 
+		console.log(temporalProducts.length);
 	}
 
 	pickRandomWelcomeMessage() {
