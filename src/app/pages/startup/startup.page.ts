@@ -27,7 +27,7 @@ export class StartupPage implements OnInit {
   }
 
   endSlider() {
-    document.cookie = "skipStartup=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+    window.localStorage.setItem('skipStartup',  'true');
     window.location.href = "/";
   }
  

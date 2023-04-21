@@ -1,3 +1,9 @@
+* {
+    padding: 0;
+    margin: 0;
+    left: 0;
+}
+
 .productsListing {
     display: flex;
     flex-wrap: wrap;
@@ -6,6 +12,7 @@
 
 .productItem {
     width: 160px;
+    position: relative;
     height: 210px;
     border: 3px solid var(--ion-color-secondary);
     border-radius: 25px;
@@ -21,4 +28,9 @@
 
 .productName {
     text-align: center;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }

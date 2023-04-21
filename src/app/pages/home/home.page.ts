@@ -7,6 +7,7 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { ProductListingComponent } from 'src/app/components/product-listing/product-listing.component';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
 import { get } from 'http';
+import { log } from 'console';
 
 @Component({
     selector: 'app-home',
@@ -17,51 +18,33 @@ import { get } from 'http';
 })
 export class HomePage implements OnInit {
 	welcomeMessage : string = '';
-	products : any;
-	items: any = 	[
-						{name: 'flores',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores2',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores3',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores4',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores5',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores6',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores7',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores8',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores9',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores10',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores11',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-						{name: 'flores12',
-						imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-					]
-
-	
+	products : Array<Object> = [];
 
   	constructor(public prestaShop: PrestaShopService) { }
 
   	ngOnInit() { }
 
 	async getProducts() {
+		let productArray : Array<Object> = [];
+
 		this.prestaShop.getProducts().subscribe((response : any) => {
-			this.products = response.products;
+			response.products.forEach((product : any) => {
+				productArray.push(
+					{
+						name: product.name,
+						id: product.id, 
+						productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`,
+					});
+
+			});
+
+			this.products = productArray;
 		});
 	}
 
-	async ionViewWillEnter() {
+	ionViewWillEnter() {
 		this.pickRandomWelcomeMessage();
-		let temporalProducts : any = await this.getProducts();
-
-		console.log(temporalProducts.length);
+		this.getProducts();
 	}
 
 	pickRandomWelcomeMessage() {

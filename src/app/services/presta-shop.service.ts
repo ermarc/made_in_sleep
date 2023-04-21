@@ -12,7 +12,15 @@ export class PrestaShopService {
     return this.http.get('https://marcariza.cat/api/products/?display=[name, id, id_default_image]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC');
   }
 
-  getProductImage(productId : number, imageId : number) {
-    return this.http.get(`https://marcariza.cat/api/images/product/${productId}/${imageId}`)
+  getProduct(productId: string | null) {
+    return this.http.get(`https://marcariza.cat/api/products/${productId}/?display=[name, description]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
   }
+
+  getProductImageArray(productId : string | null) {
+    return this.http.get(`https://marcariza.cat/api/images/products/${productId}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC&output_format=JSON`);
+  }
+
+  // getProductImageArray(productId : string | null) {
+  //   return this.http.get(`https://marcariza.cat/api/products/23?display=[id_default_combination]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`)
+  // }
 }

@@ -7,6 +7,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'product',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
     path: 'home',
     loadComponent: () => import('./pages/home/home.page').then((m) => m.HomePage),
   },
@@ -27,7 +32,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/orders/orders.page').then( m => m.OrdersPage)
   },
   {
-    path: 'product',
+    path: 'product/:id',
     loadComponent: () => import('./pages/product-detail/product-detail.page').then( m => m.ProductDetailPage)
   },
   {

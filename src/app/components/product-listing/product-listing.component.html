@@ -1,6 +1,6 @@
 <section class="productsListing">
-  <div class="productItem" (click)="goToProduct()" *ngFor="let product of products">
-    <ion-img class="productImage" src='https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'></ion-img>
+  <div class="productItem" (click)="goToProduct(product.id)" *ngFor="let product of products">
+    <ion-img class="productImage" src={{product.productImageUrl}}></ion-img>
     <h3 class="productName">{{product.name}}</h3>
   </div>
 </section>

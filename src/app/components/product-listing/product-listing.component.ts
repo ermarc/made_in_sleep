@@ -21,18 +21,8 @@ export class ProductListingComponent  implements OnInit {
 
     ngOnInit() {}
 
-    goToProduct() {
-      this.router.navigate(['/product']);
+    goToProduct(productId : number) {
+      console.log(productId)
+      this.router.navigate([`/product/${productId}`]);
     }
-
-    getProductImage(product : any) {
-      let productImage : string = '';
-      this.prestaShop.getProductImage(product.id, product.id_default_image).subscribe((response: any) => {
-        productImage = response;
-        console.log(response);
-      })
-
-      return productImage;
-    } 
-
 }
