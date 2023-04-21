@@ -1,3 +1,9 @@
+ion-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 ion-toolbar, ion-img {
-    height: 56px;
+    height: 35px;
 }
