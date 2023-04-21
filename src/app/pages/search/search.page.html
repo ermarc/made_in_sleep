@@ -4,7 +4,8 @@
 	<ion-content [fullscreen]="true">
 		<searchBar (keydown.enter)="startSearch()"></searchBar>
 
-		<productListing [products]='products'></productListing>
+		<productListing [products]='products' *ngIf="products.length != 0 && searchStarted"></productListing>
+		<floatingMessage *ngIf="products.length == 0 && searchStarted" [text]="'No se han encontrado resultados.'"></floatingMessage>
 	</ion-content>
 
 	<mainNavbar></mainNavbar>

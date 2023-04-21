@@ -17,11 +17,19 @@ export class ProductListingComponent  implements OnInit {
     products : any = '';
 
 
+    
+
     constructor(private router: Router, public prestaShop: PrestaShopService) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+      
+    }
 
     goToProduct(productId : number) {
       this.router.navigate([`/product/${productId}`]);
     }
+
+    // checkIfThereAreProducts() {
+    //   return (this.products ? true : false);
+    // }
 }

@@ -7,17 +7,19 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { SearchBarComponent } from 'src/app/components/search-bar/search-bar.component';
 import { ProductListingComponent } from 'src/app/components/product-listing/product-listing.component';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
+import { FloatingMessageComponent } from 'src/app/components/floating-message/floating-message.component';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.page.html',
   styleUrls: ['./search.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent, SearchBarComponent,ProductListingComponent]
+  imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent, SearchBarComponent,ProductListingComponent, FloatingMessageComponent]
 })
 export class SearchPage implements OnInit {
   items: any;
   products : Array<Object> = [];
+  searchStarted : boolean = false;
 
   constructor(public prestaShop: PrestaShopService) { }
 
@@ -25,22 +27,6 @@ export class SearchPage implements OnInit {
   }
 
   startSearch() {
-    //   this.items =	[
-    //     {name: 'flores',
-    //     imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-    //     {name: 'flores2',
-    //     imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-    //     {name: 'flores3',
-    //     imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-    //     {name: 'flores4',
-    //     imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-    //     {name: 'flores5',
-    //     imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-    //     {name: 'flores6',
-    //     imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-    //     {name: 'flores7',
-    //     imgSrc: 'https://www.clara.es/medio/2022/12/27/nombres-de-flores_1cbbabe1_1200x630.jpg'},
-    // ]
     this.getProducts();
   }
 
@@ -65,6 +51,7 @@ export class SearchPage implements OnInit {
         });
       }
 			this.products = productArray;
+      this.searchStarted = true;
 		});
 	}
 
