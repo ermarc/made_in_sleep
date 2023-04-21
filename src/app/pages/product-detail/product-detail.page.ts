@@ -22,6 +22,7 @@ export class ProductDetailPage implements OnInit {
   productName : string = 'Cargando...';
   productDesc : string = 'Cargando...';
   productId : string | null = '';
+  productPrice : any = 'Cargando...';
   productImages : Array<string> = [];
 
   constructor(private route: ActivatedRoute, public prestaShop: PrestaShopService) { }
@@ -40,6 +41,7 @@ export class ProductDetailPage implements OnInit {
     this.prestaShop.getProduct(this.productId).subscribe((response : any) => {
       this.productName = response.products[0].name;
       this.productDesc = response.products[0].description.replaceAll('<p>', '').replaceAll('</p>', '');
+      this.productPrice = (Math.round(response.products[0].price * 100) / 100).toFixed(2).replace(".", ",");
     })
   }
 

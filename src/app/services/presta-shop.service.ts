@@ -13,7 +13,7 @@ export class PrestaShopService {
   }
 
   getProduct(productId: string | null) {
-    return this.http.get(`https://marcariza.cat/api/products/${productId}/?display=[name, description]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
+    return this.http.get(`https://marcariza.cat/api/products/${productId}/?display=[name, description, price]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
   }
 
   getProductImageArray(productId : string | null) {
