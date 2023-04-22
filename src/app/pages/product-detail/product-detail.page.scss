@@ -8,7 +8,9 @@
     width: 100%;
     height: 300px;
     object-fit: cover;
-    background-color: grey;
+    background-image: url('../../../assets/images/unknown.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .productInfo {
@@ -28,8 +30,8 @@
 }
 
 .productDesc {
-    
     margin-left: 13px;
     margin-right: 13px;
     font-size: 20px;
+    margin-bottom: 75px;
 }

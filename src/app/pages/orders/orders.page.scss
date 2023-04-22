@@ -1,14 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    left: 0;
+}
+
 .ordersTitle {
     transform: translateX(15px);
     opacity: 0;
     animation: fadeInLeftToRight 0.8s ease-out forwards 0.3s;
     font-family: mainFontBold;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .dividingLineContent {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 30px;
 }
 
 .dividingLine{

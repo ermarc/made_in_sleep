@@ -14,7 +14,7 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 })
 export class ProfilePage implements OnInit {
 
-  userImage : string = '/assets/images/userPlaceholder.png';
+  userImage : string = 'assets/images/unknown.png';
   userName : string = 'Cargando...';
   userDesc : string = 'Cargando...';
 

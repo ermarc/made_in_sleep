@@ -7,6 +7,10 @@
 		<div class="dividingLineContent">
 			<div class="dividingLine"></div>
 		</div>
+
+		<div class="itemListing">
+			<floatingTag *ngFor="let item of Items" [itemRedirectUrl]="'/orders/1'"></floatingTag>
+		</div>
 	</ion-content>
 
 	<mainNavbar></mainNavbar>

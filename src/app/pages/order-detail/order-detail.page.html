@@ -2,7 +2,10 @@
 	<mainHeader></mainHeader>
 
 	<ion-content [fullscreen]="true">
-		<h1 class="cartTitle">Mi carrito</h1>
+    <div class="orderDetailTitle">
+      <h1 class="orderTitle">Detalles del pedido</h1>
+      <h3>{{orderId}}</h3>
+    </div>
 
 		<div class="dividingLineContent">
 			<div class="dividingLine"></div>
@@ -12,10 +15,9 @@
 			<floatingTag *ngFor="let item of Items" [itemRedirectUrl]="'/product/1'"></floatingTag>
 		</div>
 
-		<div class="cartFinalizeContainer">
-			<div class="cartFinalize">
-				<h1>Total: {{cartPrice}}€</h1>
-				<floatingButton [position]="'static'" [text]="'Finalizar compra'"></floatingButton>
+		<div class="orderFinalDetailContainer">
+			<div class="orderFinalDetail">
+				<h1>Total: {{orderPrice}}€</h1>
 			</div>
 		</div>
 	</ion-content>

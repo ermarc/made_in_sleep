@@ -11,6 +11,9 @@ export class FloatingButtonComponent  implements OnInit {
   @Input()
   text : string = 'default';
 
+  @Input()
+  position : string = 'fixed';
+
   constructor() { }
 
   ngOnInit() {}

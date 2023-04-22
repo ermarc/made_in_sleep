@@ -31,38 +31,6 @@ swiper-slide {
     height: 100px;
 }
 
-.introSlider {
-    position: relative;
-    width: 500px;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-}
-
-.pillowImage {
-    position: absolute;
-    z-index: 5;
-    height: 200px;
-    transform: translateX(-20px);
-}
-
-.madeInSleepImage {
-    position: absolute;
-    transform: translateX(60px) translateY(22px);
-    z-index: 10;
-    height: 200px;
-    animation: snooze 1.5s infinite 0.4s;
-}
-
-.dreamLetterImage {
-    position: absolute;
-    height: 60px;
-    z-index: 20;
-    opacity: 0;
-    transform: translateX(50px) translateY(-10px);
-    animation: snoozeFloat 1.5s forwards infinite 0.4s;
-}
-
 .sliderImage {
     width: 500px;
     height: 200px;
@@ -76,6 +44,7 @@ swiper-slide {
 .sliderText {
     font-size: 18px;
     width: 300px;
+    height: 50px;
     text-align: center;
 }
 
@@ -121,39 +90,6 @@ swiper-slide {
 //         transform: translateX(25px) translateY(-100px);
 //     }
 // }
-
-@keyframes snoozeFloat{
-    0% {
-        opacity: 0;
-        transform: translateX(50px) translateY(-10px) scale(100%);
-    } 
-    15% {
-        opacity: 1;
-    } 
-    85% {
-        opacity: 1
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(75px) translateY(-100px) scale(140%);
-    }
-}
-
-
-@keyframes snooze {
-    0% {
-        transform: scaleY(100%) translateX(60px) translateY(22px);
-    } 
-    20% {
-        transform: scaleY(90%) translateX(60px) translateY(22px);
-    }
-    40% {
-        transform: scaleY(100%) translateX(60px) translateY(22px);
-    }
-    100% {
-        transform: scaleY(100%) translateX(60px) translateY(22px);
-    }
-}
 
 @keyframes littleBounce {
     0% {
