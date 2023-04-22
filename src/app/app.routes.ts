@@ -47,5 +47,9 @@ export const routes: Routes = [
     path: 'orders/:id',
     loadComponent: () => import('./pages/order-detail/order-detail.page').then( m => m.OrderDetailPage)
   },
+  {
+    path: 'notfound',
+    loadComponent: () => import('./pages/notfound/notfound.page').then( m => m.NotfoundPage)
+  },
 
 ];

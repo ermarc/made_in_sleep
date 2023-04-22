@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SmallHeaderComponent } from 'src/app/components/small-header/small-header.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
@@ -25,12 +25,11 @@ export class ProductDetailPage implements OnInit {
   productPrice : any = 'Cargando...';
   productImages : Array<string> = [];
 
-  constructor(private route: ActivatedRoute, public prestaShop: PrestaShopService) { }
+  constructor(private route: ActivatedRoute, private router: Router, public prestaShop: PrestaShopService) { }
 
   ngOnInit() {
     this.getIdFromUrl();
     this.getProductById();
-    this.getProductImagesById();
   }
 
   getIdFromUrl() {
@@ -42,6 +41,11 @@ export class ProductDetailPage implements OnInit {
       this.productName = response.products[0].name;
       this.productDesc = response.products[0].description.replaceAll('<p>', '').replaceAll('</p>', '');
       this.productPrice = (Math.round(response.products[0].price * 100) / 100).toFixed(2).replace(".", ",");
+
+      this.getProductImagesById();
+    }, 
+    (error : any) => {
+      this.redirectToNotFound();
     })
   }
 
@@ -57,6 +61,10 @@ export class ProductDetailPage implements OnInit {
         this.productImages.push(`https://marcariza.cat/api/images/products/${this.productId}/${imageObjects[i].id}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC&output_format=JSON`)
       }
     })
+  }
+
+  redirectToNotFound() {
+    this.router.navigate(['/notfound']);
   }
 
 }
