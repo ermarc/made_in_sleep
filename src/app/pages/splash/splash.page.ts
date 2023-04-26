@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { MadeInSleepAnimatedLogoComponent } from 'src/app/components/made-in-sleep-animated-logo/made-in-sleep-animated-logo.component';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-splash',
@@ -14,11 +15,12 @@ import { MadeInSleepAnimatedLogoComponent } from 'src/app/components/made-in-sle
 })
 export class SplashPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storage: StorageService) { }
 
-  ngOnInit() {
-    let skipStartup = window.localStorage.getItem('skipStartup');
-    skipStartup == 'true' ? this.redirectToHome() : this.redirectToStartup();
+  async ngOnInit() {
+    // let skipStartup = window.localStorage.getItem('skipStartup');
+    let skipStartup : boolean = await this.storage.get('skipStartup');
+    skipStartup == true ? this.redirectToHome() : this.redirectToStartup();
   }
 
   redirectToHome() {

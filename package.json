@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "@angular/cli": "15.2.6",
+    "@types/node": "^18.16.0"
+  },
+  "dependencies": {
+    "@angular-devkit/build-angular": "^15.2.6",
+    "@angular/core": "^15.2.8",
+    "@ionic/angular": "^7.0.3",
+    "@ionic/angular-toolkit": "^9.0.0",
+    "@ionic/storage-angular": "^3.0.6",
+    "angular": "^1.8.3",
+    "swiper": "^9.2.4"
+  }
+}

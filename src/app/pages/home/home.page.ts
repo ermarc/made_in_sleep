@@ -6,8 +6,6 @@ import { MainHeaderComponent } from 'src/app/components/main-header/main-header.
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { ProductListingComponent } from 'src/app/components/product-listing/product-listing.component';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
-import { get } from 'http';
-import { log } from 'console';
 
 @Component({
     selector: 'app-home',
@@ -65,6 +63,7 @@ export class HomePage implements OnInit {
 			'¡Ultra absorbente! ¿Para qué?<br> Usted verá... ✊🏼🍌🍌💦💦💦',
 			'¡Rescatamos su confort y energía!<br>¡Tal como Europa con nosotros!'
 		]
+		
 		this.welcomeMessage = textOptions[Math.floor(Math.random() * textOptions.length)];
   	}
 

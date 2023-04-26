@@ -9,12 +9,12 @@
 		</div>
 
 		<div class="itemListing">
-			<floatingTag *ngFor="let item of Items" [itemRedirectUrl]="'/product/1'"></floatingTag>
+			<floatingTag *ngFor="let item of products" [itemRedirectUrl]="'/product/' + item.productId" [itemName]="item.productName" [itemImageUrl]="item.productImageUrl"></floatingTag>
 		</div>
 
 		<div class="cartFinalizeContainer">
 			<div class="cartFinalize">
-				<h1>Total: {{cartPrice}}€</h1>
+				<h1>Total: {{cartPrice}}</h1>
 				<floatingButton [position]="'static'" [text]="'Finalizar compra'"></floatingButton>
 			</div>
 		</div>

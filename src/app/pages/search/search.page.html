@@ -3,10 +3,23 @@
 
 	<ion-content [fullscreen]="true">
 		<searchBar (keydown.enter)="startSearch()"></searchBar>
+		<div class="buttonContainer">
+			<button id="triggered" class="categoryFilterButton"></button>
+		</div>
+
+		<ion-popover trigger="triggered">
+			<ng-template>
+			  <ion-content class="ion-padding">
+				<h2>Escoja categoría</h2>
+				<h5 *ngFor="let category of categories">{{category.categoryName}}</h5>
+			  </ion-content>
+			</ng-template>
+		</ion-popover>
 
 		<productListing [products]='products' *ngIf="products.length != 0 && searchStarted"></productListing>
 		<floatingMessage *ngIf="products.length == 0 && searchStarted" [text]="'No se han encontrado resultados.'"></floatingMessage>
 	</ion-content>
+
 
 	<mainNavbar></mainNavbar>
 </ion-app>

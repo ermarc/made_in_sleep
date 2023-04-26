@@ -10,7 +10,7 @@
             <h3 class="productDesc">{{productDesc}}</h3>
         </section>
 
-        <floatingButton [text]="'Añadir producto al carrito'"></floatingButton>
+        <floatingButton [text]="'Añadir producto al carrito'" (click)="addProductToCart()"></floatingButton>
     </ion-content>
 
     <mainNavbar></mainNavbar>

@@ -16,6 +16,10 @@ export class PrestaShopService {
     return this.http.get(`https://marcariza.cat/api/products/${productId}/?display=[name, description, price]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
   }
 
+  getProductWithImage(productId: string | null) {
+    return this.http.get(`https://marcariza.cat/api/products/${productId}/?display=[name, description, price, id_default_image]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
+  }
+
   getProductImageArray(productId : string | null) {
     return this.http.get(`https://marcariza.cat/api/images/products/${productId}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC&output_format=JSON`);
   }
@@ -23,4 +27,31 @@ export class PrestaShopService {
   getProductsByName(productName : string) {
     return this.http.get(`https://marcariza.cat/api/products/?display=[name, id, id_default_image]&filter[name]=%[${productName}]%&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
   }
+
+  getProductsById(productIdArray : any) {
+
+    let idString : string = this.buildFilterArray(productIdArray);
+
+    return this.http.get(`https://marcariza.cat/api/products/?display=[name, id, id_default_image, price]&filter[id]=[${idString}]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
+  }
+
+  getCategories() {
+    return this.http.get('https://marcariza.cat/api/categories?output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC');
+  }
+
+  getCategory(categoryId: any) {
+    return this.http.get(`https://marcariza.cat/api/categories/${categoryId}?output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
+  }
+
+  buildFilterArray(arrayToFilter : any) {
+    let string = '';
+
+    arrayToFilter.forEach((element : string) => {
+      string += element + '|';
+    })
+
+    return string;
+  }
+
+
 }

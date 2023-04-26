@@ -7,6 +7,7 @@ import { SmallHeaderComponent } from 'src/app/components/small-header/small-head
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { FloatingButtonComponent } from 'src/app/components/floating-button/floating-button.component';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -25,9 +26,12 @@ export class ProductDetailPage implements OnInit {
   productPrice : any = 'Cargando...';
   productImages : Array<string> = [];
 
-  constructor(private route: ActivatedRoute, private router: Router, public prestaShop: PrestaShopService) { }
+  constructor(private route: ActivatedRoute, private router: Router, public prestaShop: PrestaShopService, private storage: StorageService) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
     this.getIdFromUrl();
     this.getProductById();
   }
@@ -61,6 +65,26 @@ export class ProductDetailPage implements OnInit {
         this.productImages.push(`https://marcariza.cat/api/images/products/${this.productId}/${imageObjects[i].id}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC&output_format=JSON`)
       }
     })
+  }
+
+  async addProductToCart() {
+    let cartProducts : any = await this.storage.get('cartProducts');
+
+    if (cartProducts == null) {
+      await this.storage.set('cartProducts', [this.productId])
+    } else {
+      if (!this.checkIfProductIsAlreadyInProductCart(cartProducts)) {
+        cartProducts.push(this.productId)
+        await this.storage.set('cartProducts', cartProducts)
+      }
+    }
+
+    this.router.navigate(['/home']);
+  }
+
+  checkIfProductIsAlreadyInProductCart(cartProducts : any) {
+   return cartProducts.includes(this.productId);
+
   }
 
   redirectToNotFound() {

@@ -19,11 +19,13 @@ import { FloatingMessageComponent } from 'src/app/components/floating-message/fl
 export class SearchPage implements OnInit {
   items: any;
   products : Array<Object> = [];
+  categories : any = [];
   searchStarted : boolean = false;
 
   constructor(public prestaShop: PrestaShopService) { }
 
   ngOnInit() {
+    this.getCategories();
   }
 
   startSearch() {
@@ -54,5 +56,24 @@ export class SearchPage implements OnInit {
       this.searchStarted = true;
 		});
 	}
+
+  async getCategories() {
+    this.prestaShop.getCategories().subscribe((response: any) => {
+      response.categories.forEach((item : any) => {
+        this.prestaShop.getCategory(item.id).subscribe((finalResponse : any ) => {
+          this.categories.push({categoryName : finalResponse.category.name, categoryId: finalResponse.category.id})
+        })
+      })
+
+      console.log(this.categories)
+    })
+
+  }
+
+  async getProductsByCategory(categoryId : any) {
+    this.prestaShop.getCategory(categoryId).subscribe((response : any ) => {
+      this.categories.push({categoryName : response.category.name, categoryId: response.category.id})
+    })
+  }
 
 }
