@@ -11,3 +11,13 @@
     border-radius: 10px;
     background-color: var(--ion-color-secondary);
 }
+
+.popoverCategory {
+    background-color: var(--ion-color-secondary);
+    border-radius: 14px;
+    padding: 6px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

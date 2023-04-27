@@ -7,11 +7,11 @@
 			<button id="triggered" class="categoryFilterButton"></button>
 		</div>
 
-		<ion-popover trigger="triggered">
+		<ion-popover trigger="triggered" [isOpen]="testOpen">
 			<ng-template>
 			  <ion-content class="ion-padding">
 				<h2>Escoja categoría</h2>
-				<h5 *ngFor="let category of categories">{{category.categoryName}}</h5>
+				<h4 class="popoverCategory" *ngFor="let category of categories" (click)="getCategoryProducts(category.categoryId)">{{category.categoryName}}</h4>
 			  </ion-content>
 			</ng-template>
 		</ion-popover>

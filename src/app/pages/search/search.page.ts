@@ -21,6 +21,7 @@ export class SearchPage implements OnInit {
   products : Array<Object> = [];
   categories : any = [];
   searchStarted : boolean = false;
+  testOpen : boolean = false;
 
   constructor(public prestaShop: PrestaShopService) { }
 
@@ -49,7 +50,6 @@ export class SearchPage implements OnInit {
               id: product.id, 
               productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`,
             });
-
         });
       }
 			this.products = productArray;
@@ -59,21 +59,34 @@ export class SearchPage implements OnInit {
 
   async getCategories() {
     this.prestaShop.getCategories().subscribe((response: any) => {
-      response.categories.forEach((item : any) => {
-        this.prestaShop.getCategory(item.id).subscribe((finalResponse : any ) => {
-          this.categories.push({categoryName : finalResponse.category.name, categoryId: finalResponse.category.id})
-        })
+      response.categories.forEach((item: any) => {
+        this.categories.push({categoryName : item.name, categoryId: item.id})
       })
-
-      console.log(this.categories)
-    })
-
-  }
-
-  async getProductsByCategory(categoryId : any) {
-    this.prestaShop.getCategory(categoryId).subscribe((response : any ) => {
-      this.categories.push({categoryName : response.category.name, categoryId: response.category.id})
     })
   }
+
+  async getCategoryProducts(categoryId: any) {
+    let productArray : Array<Object> = [];
+
+    this.prestaShop.getCategoryProducts(categoryId).subscribe((response : any) => {
+      response.products.forEach((product: any) => {
+        productArray.push(
+          {
+            name: product.name,
+            id: product.id, 
+            productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`,
+          });
+      })
+      this.products = productArray;
+      this.searchStarted = true;
+
+    });
+  }
+
+  // async getProductsByCategory(categoryId : any) {
+  //   this.prestaShop.getCategory(categoryId).subscribe((response : any ) => {
+  //     this.categories.push({categoryName : response.category.name, categoryId: response.category.id})
+  //   })
+  // }
 
 }
