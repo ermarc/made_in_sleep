@@ -82,11 +82,4 @@ export class SearchPage implements OnInit {
 
     });
   }
-
-  // async getProductsByCategory(categoryId : any) {
-  //   this.prestaShop.getCategory(categoryId).subscribe((response : any ) => {
-  //     this.categories.push({categoryName : response.category.name, categoryId: response.category.id})
-  //   })
-  // }
-
 }

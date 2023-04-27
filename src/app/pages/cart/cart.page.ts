@@ -6,6 +6,7 @@ import { MainHeaderComponent } from 'src/app/components/main-header/main-header.
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { FloatingTagComponent } from 'src/app/components/floating-tag/floating-tag.component';
 import { FloatingButtonComponent } from 'src/app/components/floating-button/floating-button.component';
+import { FloatingTagInputNumComponent } from 'src/app/components/floating-tag-input-num/floating-tag-input-num.component';
 import { StorageService } from 'src/app/services/storage.service';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
 
@@ -14,7 +15,7 @@ import { PrestaShopService } from 'src/app/services/presta-shop.service';
   templateUrl: './cart.page.html',
   styleUrls: ['./cart.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent, FloatingTagComponent, FloatingButtonComponent]
+  imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent, FloatingTagComponent, FloatingButtonComponent, FloatingTagInputNumComponent]
 })
 export class CartPage implements OnInit {
   products : any = [];
@@ -32,10 +33,8 @@ export class CartPage implements OnInit {
       response.products.forEach((product : any) => {
         this.products.push({productName: product.name, productId: product.id, productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`, productPrice: product.price})
       });
-
       this.calculateTotalPrice();
     });
-
   }
 
   calculateTotalPrice() {
