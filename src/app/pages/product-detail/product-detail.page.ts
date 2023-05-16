@@ -71,24 +71,28 @@ export class ProductDetailPage implements OnInit {
     let cartProducts : any = await this.storage.get('cartProducts');
 
     if (cartProducts == null) {
-      await this.storage.set('cartProducts', [this.productId])
+      await this.storage.set('cartProducts', [{productId: this.productId, productQuantity: 1}])
     } else {
-      if (!this.checkIfProductIsAlreadyInProductCart(cartProducts)) {
-        cartProducts.push(this.productId)
-        await this.storage.set('cartProducts', cartProducts)
+      let productIndex = this.getProductIndexInCart(cartProducts);
+      console.log(productIndex);
+      if (productIndex != -1) {
+        cartProducts[productIndex].productQuantity++;
+      } else {
+        cartProducts.push({productId: this.productId, productQuantity: 1});
       }
+
+      await this.storage.set('cartProducts', cartProducts);
     }
 
     this.router.navigate(['/home']);
   }
 
-  checkIfProductIsAlreadyInProductCart(cartProducts : any) {
-   return cartProducts.includes(this.productId);
-
+  getProductIndexInCart(cartProducts : any) {
+    console.log(cartProducts)
+    return cartProducts.findIndex((element : any) => element.productId == this.productId);
   }
 
   redirectToNotFound() {
     this.router.navigate(['/notfound']);
   }
-
 }
