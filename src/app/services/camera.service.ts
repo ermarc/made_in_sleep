@@ -24,9 +24,6 @@ export class CameraService {
       filepath: "soon...",
       webviewPath: capturedPhoto.webPath
     });
-
-    console.log('this photo new')
-    console.log(capturedPhoto);
   }
 }
 

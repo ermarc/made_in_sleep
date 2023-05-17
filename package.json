@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "@angular/cli": "16.0.1"
+    "@angular/cli": "16.0.1",
+    "@types/leaflet": "^1.9.3"
   },
   "dependencies": {
     "@angular-devkit/build-angular": "^16.0.1",
@@ -10,11 +11,13 @@
     "@angular/router": "^16.0.1",
     "@capacitor/camera": "^5.0.2",
     "@capacitor/filesystem": "^5.0.2",
+    "@capacitor/geolocation": "^5.0.2",
     "@capacitor/preferences": "^5.0.2",
     "@ionic/angular": "^7.0.6",
     "@ionic/angular-toolkit": "^9.0.0",
     "@ionic/pwa-elements": "^3.1.1",
     "@ionic/storage-angular": "^3.0.6",
+    "leaflet": "^1.9.3",
     "swiper": "^9.3.2"
   }
 }

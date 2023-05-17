@@ -25,7 +25,6 @@ export class CartPage implements OnInit {
 
 	async ngOnInit() {
 		this.generateInputNumEventListener();
-		console.log(await this.storage.get('cartProducts'))
 	}
 
 	ionViewWillEnter() {
