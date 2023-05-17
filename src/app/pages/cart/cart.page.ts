@@ -24,22 +24,29 @@ export class CartPage implements OnInit {
 	constructor(private prestaShop: PrestaShopService, private storage: StorageService) { }
 
 	ngOnInit() {
+		this.generateInputNumEventListener();
+	}
+
+	ionViewWillEnter() {
 		this.getCartProducts();
 		this.calculateTotalPrice();
-		this.generateInputNumEventListener();
 	}
 
 	async getCartProducts() {
 		let array = await this.storage.get('cartProducts');
 
 		if (array != null) {
-			this.prestaShop.getProductsById(array).subscribe((response: any) => {
-				response.products.forEach((product: any, index: any) => {
-					this.products.push({ productName: product.name, productId: product.id, productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`, productPrice: product.price, productQuantity: array[index].productQuantity })
+			let arrayPromises : Array<any> = [];
+			array.forEach((element : any) => {
+				arrayPromises.push(this.prestaShop.getProductCart(element.productId).toPromise());
+			})
+
+			Promise.all(arrayPromises).then(x => {
+				x.forEach((product : any, index : any) => {
+					this.products.push({ productName: product.products[0].name, productId: product.products[0].id, productImageUrl: `https://marcariza.cat/api/images/products/${product.products[0].id}/${product.products[0].id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`, productQuantity: array[index].productQuantity })
 				});
 			});
 		}
-
 	}
 
 	async calculateTotalPrice() {
@@ -66,8 +73,12 @@ export class CartPage implements OnInit {
 	}
 
 	generateInputNumEventListener() {
-		document.getElementsByClassName("itemListing")[0].addEventListener("change", () => {
-			this.calculateTotalPrice();
+		document.getElementsByClassName("itemListing")[0].addEventListener("change", () => {		
+			this.cartPrice = 'Recalculando...';
+			setTimeout(() => {
+				this.calculateTotalPrice();
+			}, 500);	
+
 		})
 	}
 
