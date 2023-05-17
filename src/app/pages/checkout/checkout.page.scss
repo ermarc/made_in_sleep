@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    left: 0;
+    padding: 0;
+}
+
+.checkoutTitle {
+    transform: translateX(15px);
+    opacity: 0;
+    animation: fadeInLeftToRight 0.8s ease-out forwards 0.3s;
+    font-family: mainFontBold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.dividingLineContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.dividingLine{
+    background-color: var(--ion-color-secondary);
+    height: 1px;
+    width: 80%;
+    align-self: center;
+    margin-top: 10px;
+}
+
+.checkoutIntroductionContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.checkoutIntroduction {
+    font-size: 22px;
+}
+
+.checkoutPrice {
+    font-size: 36px;
+}

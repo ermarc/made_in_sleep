@@ -34,6 +34,7 @@ export class CartPage implements OnInit {
 
 	async getCartProducts() {
 		let array = await this.storage.get('cartProducts');
+		this.products = [];
 
 		if (array != null) {
 			let arrayPromises : Array<any> = [];
@@ -52,7 +53,6 @@ export class CartPage implements OnInit {
 	async calculateTotalPrice() {
 		let array = await this.storage.get('cartProducts');
 		let totalPrice: number = 0;
-		this.products = [];
 
 		if (array != null) {
 			let arrayPromises : Array<any> = [];
