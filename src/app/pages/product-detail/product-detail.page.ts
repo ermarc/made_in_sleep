@@ -74,7 +74,6 @@ export class ProductDetailPage implements OnInit {
       await this.storage.set('cartProducts', [{productId: this.productId, productQuantity: 1}])
     } else {
       let productIndex = this.getProductIndexInCart(cartProducts);
-      console.log(productIndex);
       if (productIndex != -1) {
         cartProducts[productIndex].productQuantity++;
       } else {
@@ -88,7 +87,6 @@ export class ProductDetailPage implements OnInit {
   }
 
   getProductIndexInCart(cartProducts : any) {
-    console.log(cartProducts)
     return cartProducts.findIndex((element : any) => element.productId == this.productId);
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'floatingTagInputNum',
@@ -20,12 +21,30 @@ export class FloatingTagInputNumComponent  implements OnInit {
   @Input()
   itemRedirectUrl : string = '';
 
-  constructor(private router: Router) { }
+  @Input()
+  itemQuantity : string = '';
+
+  @Input()
+  itemId : string = '';
+
+  constructor(private router: Router, private storage: StorageService) { }
 
   ngOnInit() {}
 
   redirectTo() {
     if (this.itemRedirectUrl) { this.router.navigate([this.itemRedirectUrl]); }
+  }
+
+  async renewProductQuantity(event : any) {
+    let cartProducts = await this.storage.get('cartProducts');
+    let numberValue = event.target.value;
+    
+    cartProducts[this.getProductIndexInCart(cartProducts)].productQuantity = numberValue;
+    await this.storage.set('cartProducts', cartProducts);
+  }
+
+  getProductIndexInCart(cartProducts : any) {
+    return cartProducts.findIndex((element : any) => element.productId == this.itemId);
   }
 
 }

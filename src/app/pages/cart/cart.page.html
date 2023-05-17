@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="itemListing">
-			<floatingTagInputNum *ngFor="let item of products" [itemRedirectUrl]="'/product/' + item.productId" [itemName]="item.productName" [itemImageUrl]="item.productImageUrl"></floatingTagInputNum>
+			<floatingTagInputNum *ngFor="let item of products" [itemRedirectUrl]="'/product/' + item.productId" [itemName]="item.productName" [itemImageUrl]="item.productImageUrl" [itemQuantity]="item.productQuantity" [itemId]="item.productId"></floatingTagInputNum>
 		</div>
 
 		<div class="cartFinalizeContainer">

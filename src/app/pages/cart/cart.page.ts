@@ -25,13 +25,14 @@ export class CartPage implements OnInit {
 
   ngOnInit() {
     this.getCartProducts();
+    this.generateInputNumEventListener();
   }
 
   async getCartProducts() {
     let array = await this.storage.get('cartProducts');
     this.prestaShop.getProductsById(array).subscribe((response : any) => {
-      response.products.forEach((product : any) => {
-        this.products.push({productName: product.name, productId: product.id, productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`, productPrice: product.price})
+      response.products.forEach((product : any, index : any) => {
+        this.products.push({productName: product.name, productId: product.id, productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`, productPrice: product.price, productQuantity: array[index].productQuantity})
       });
       this.calculateTotalPrice();
     });
@@ -49,6 +50,12 @@ export class CartPage implements OnInit {
 
   finishShopping() {
 
+  }
+
+  generateInputNumEventListener() {
+    document.getElementsByClassName("itemListing")[0].addEventListener("change", () => {
+      this.calculateTotalPrice();
+    })
   }
 
 }

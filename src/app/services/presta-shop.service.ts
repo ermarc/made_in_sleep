@@ -50,8 +50,8 @@ export class PrestaShopService {
   buildFilterArray(arrayToFilter : any) {
     let string = '';
 
-    arrayToFilter.forEach((element : string) => {
-      string += element + '|';
+    arrayToFilter.forEach((element : any) => {
+      string += element.productId + '|';
     })
 
     return string;
