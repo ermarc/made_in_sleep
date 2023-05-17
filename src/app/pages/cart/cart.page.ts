@@ -11,51 +11,64 @@ import { StorageService } from 'src/app/services/storage.service';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.page.html',
-  styleUrls: ['./cart.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent, FloatingTagComponent, FloatingButtonComponent, FloatingTagInputNumComponent]
+	selector: 'app-cart',
+	templateUrl: './cart.page.html',
+	styleUrls: ['./cart.page.scss'],
+	standalone: true,
+	imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent, FloatingTagComponent, FloatingButtonComponent, FloatingTagInputNumComponent]
 })
 export class CartPage implements OnInit {
-  products : any = [];
-  cartPrice : string = 'Calculando...';
+	products: any = [];
+	cartPrice: string = 'Calculando...';
 
-  constructor(private prestaShop: PrestaShopService, private storage: StorageService) { }
+	constructor(private prestaShop: PrestaShopService, private storage: StorageService) { }
 
-  ngOnInit() {
-    this.getCartProducts();
-    this.generateInputNumEventListener();
-  }
+	ngOnInit() {
+		this.getCartProducts();
+		this.calculateTotalPrice();
+		this.generateInputNumEventListener();
+	}
 
-  async getCartProducts() {
-    let array = await this.storage.get('cartProducts');
-    this.prestaShop.getProductsById(array).subscribe((response : any) => {
-      response.products.forEach((product : any, index : any) => {
-        this.products.push({productName: product.name, productId: product.id, productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`, productPrice: product.price, productQuantity: array[index].productQuantity})
-      });
-      this.calculateTotalPrice();
-    });
-  }
+	async getCartProducts() {
+		let array = await this.storage.get('cartProducts');
 
-  calculateTotalPrice() {
-    let totalPrice : number = 0;
+		if (array != null) {
+			this.prestaShop.getProductsById(array).subscribe((response: any) => {
+				response.products.forEach((product: any, index: any) => {
+					this.products.push({ productName: product.name, productId: product.id, productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`, productPrice: product.price, productQuantity: array[index].productQuantity })
+				});
+			});
+		}
 
-    this.products.forEach((product : any) => {
-      totalPrice += +product.productPrice + 0;
-    })
+	}
 
-    this.cartPrice = (totalPrice + '€').replace(".", ",");;
-  }
+	async calculateTotalPrice() {
+		let array = await this.storage.get('cartProducts');
+		let totalPrice: number = 0;
 
-  finishShopping() {
+		if (array != null) {
+			let arrayPromises : Array<any> = [];
+			array.forEach((element: any) => {
+				arrayPromises.push(this.prestaShop.getPriceByProductId(element.productId).toPromise());
+			})
+			
+			Promise.all(arrayPromises).then(x => {
+				x.forEach((element, index) => {
+					totalPrice += Number(element.products[0].price) * array[index].productQuantity;
+					if (index == x.length-1) this.cartPrice = (totalPrice + '€').replace(".", ",");
+				});
+			})
+		}
+	}
 
-  }
+	finishShopping() {
 
-  generateInputNumEventListener() {
-    document.getElementsByClassName("itemListing")[0].addEventListener("change", () => {
-      this.calculateTotalPrice();
-    })
-  }
+	}
+
+	generateInputNumEventListener() {
+		document.getElementsByClassName("itemListing")[0].addEventListener("change", () => {
+			this.calculateTotalPrice();
+		})
+	}
 
 }

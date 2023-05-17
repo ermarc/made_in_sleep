@@ -47,6 +47,10 @@ export class PrestaShopService {
 
   }
 
+  getPriceByProductId(productId: any) {
+    return this.http.get(`https://marcariza.cat/api/products/${productId}/?display=[price]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
+  }
+
   buildFilterArray(arrayToFilter : any) {
     let string = '';
 

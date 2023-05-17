@@ -37,7 +37,7 @@ export class FloatingTagInputNumComponent  implements OnInit {
 
   async renewProductQuantity(event : any) {
     let cartProducts = await this.storage.get('cartProducts');
-    let numberValue = event.target.value;
+    let numberValue = Number(event.target.value);
     
     cartProducts[this.getProductIndexInCart(cartProducts)].productQuantity = numberValue;
     await this.storage.set('cartProducts', cartProducts);
