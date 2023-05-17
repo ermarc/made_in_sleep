@@ -43,6 +43,14 @@ export class FloatingTagInputNumComponent  implements OnInit {
     await this.storage.set('cartProducts', cartProducts);
   }
 
+  async destroyProductFromCart() {
+    let cartProducts = await this.storage.get('cartProducts');
+    cartProducts.splice(this.getProductIndexInCart(cartProducts), 1);
+    await this.storage.set('cartProducts', cartProducts);
+
+    window.location.reload();
+  }
+
   getProductIndexInCart(cartProducts : any) {
     return cartProducts.findIndex((element : any) => element.productId == this.itemId);
   }

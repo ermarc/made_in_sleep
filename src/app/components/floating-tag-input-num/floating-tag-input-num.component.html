@@ -1,5 +1,8 @@
 <div (click)="redirectTo()" class="floatingTagContainer">
   <ion-img class="floatingTagImage" src={{itemImageUrl}}></ion-img>
   <h1 class="floatingTagText">{{itemName}}</h1>
-  <input class="numInput" (click)="$event.stopPropagation()" type="number" value={{itemQuantity}} (change)="renewProductQuantity($event)">
+  <div class="optionsContainer">
+    <ion-img class="deleteProduct" src="/assets/images/trashCan.svg" (click)="$event.stopPropagation(); destroyProductFromCart()"></ion-img> 
+    <input class="numInput" (click)="$event.stopPropagation()" type="number" value={{itemQuantity}} (change)="renewProductQuantity($event)">
+  </div>
 </div>

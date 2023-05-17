@@ -23,8 +23,9 @@ export class CartPage implements OnInit {
 
 	constructor(private prestaShop: PrestaShopService, private storage: StorageService) { }
 
-	ngOnInit() {
+	async ngOnInit() {
 		this.generateInputNumEventListener();
+		console.log(await this.storage.get('cartProducts'))
 	}
 
 	ionViewWillEnter() {
@@ -54,7 +55,7 @@ export class CartPage implements OnInit {
 		let array = await this.storage.get('cartProducts');
 		let totalPrice: number = 0;
 
-		if (array != null) {
+		if (array != null && array.length != 0) {
 			let arrayPromises : Array<any> = [];
 			array.forEach((element: any) => {
 				arrayPromises.push(this.prestaShop.getPriceByProductId(element.productId).toPromise());
