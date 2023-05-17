@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'floatingButton',
@@ -14,8 +15,15 @@ export class FloatingButtonComponent  implements OnInit {
   @Input()
   position : string = 'fixed';
 
-  constructor() { }
+  @Input()
+  link : string = '';
+
+  constructor(private router: Router) { }
 
   ngOnInit() {}
+
+  autoNavigate() {
+    this.router.navigate([this.link])
+  }
 
 }

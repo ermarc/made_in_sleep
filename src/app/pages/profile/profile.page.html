@@ -3,7 +3,7 @@
 
 	<ion-content [fullscreen]="true">
 		<section class="userInfo">
-			<ion-img class="userImage" src={{userImage}}></ion-img>
+			<ion-img (click)="addPhotoToGallery()" class="userImage" src={{userImage}}></ion-img>
 			<div class="userData">
 				<h1 class="userName">{{userName}}</h1>
 				<h5 class="userDesc">{{userDesc}}</h5>
@@ -13,8 +13,6 @@
 		<div class="userDividingLineContent">
 		<div class="userDividingLine"></div>
 		</div>
-
-
 	</ion-content>
 
 	<mainNavbar></mainNavbar>
