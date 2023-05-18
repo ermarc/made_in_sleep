@@ -35,3 +35,26 @@
     font-size: 20px;
     margin-bottom: 75px;
 }
+
+.shareList {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.shareButton {
+    width: 45px;
+    height: 45px;
+    border: 2px solid var(--ion-color-primary);
+    border-radius: 9px;
+    background-color: var(--ion-color-secondary);
+}
+
+.shareImage::part(image) {
+    width: 30px;
+    margin-left: 5px;
+}

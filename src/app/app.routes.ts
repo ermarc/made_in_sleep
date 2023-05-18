@@ -50,13 +50,10 @@ export const routes: Routes = [
   {
     path: 'notfound',
     loadComponent: () => import('./pages/notfound/notfound.page').then( m => m.NotfoundPage)
-  },  {
-    path: 'checkout',
-    loadComponent: () => import('./pages/checkout/checkout.page').then( m => m.CheckoutPage)
   },
   {
-    path: 'geotest',
-    loadComponent: () => import('./pages/geotest/geotest.page').then( m => m.GeotestPage)
+    path: 'checkout',
+    loadComponent: () => import('./pages/checkout/checkout.page').then( m => m.CheckoutPage)
   },
 
 

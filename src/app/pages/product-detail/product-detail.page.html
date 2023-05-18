@@ -7,6 +7,13 @@
         <section class="productInfo">
             <h1 class="productName">{{productName}}</h1>
             <h3 class="productPrice">{{productPrice}}€</h3>
+
+            <div class="shareList">
+                <button class="shareButton" (click)="shareProduct()">
+                    <ion-img class="shareImage" src="/assets/images/link.svg"></ion-img>
+                </button>
+            </div>
+
             <h3 class="productDesc">{{productDesc}}</h3>
         </section>
 

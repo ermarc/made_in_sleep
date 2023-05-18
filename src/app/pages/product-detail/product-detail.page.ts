@@ -93,4 +93,8 @@ export class ProductDetailPage implements OnInit {
   redirectToNotFound() {
     this.router.navigate(['/notfound']);
   }
+
+  shareProduct() {
+    navigator.clipboard.writeText(`¡Mira lo que he encontrado por Made in Sleep! ${this.productName} por sólo ${this.productPrice}€, ¡compra ya! https://madeinsleep.com/product/${this.productId}`);
+  }
 }
