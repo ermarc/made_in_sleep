@@ -19,6 +19,7 @@ export class ProfilePage implements OnInit {
 	userImage: string | undefined = '';
 	userName: string = 'Cargando...';
 	userDesc: string = 'Cargando...';
+	options: any;
 
 	constructor(private camera: CameraService, private storage: StorageService) { }
 
@@ -35,9 +36,10 @@ export class ProfilePage implements OnInit {
 		}
 	}
 
+
 	addPhotoToGallery() {
 		this.camera.addNewToGallery()
-			.then(() => { this.storage.set('profilePhoto', this.camera.photos[0].webviewPath) })
-			.then(() => { this.searchForAvailableLocalPhoto() })
+			// .then(() => { this.storage.set('profilePhoto', this.camera.photos[0].webviewPath) })
+			// .then(() => { this.searchForAvailableLocalPhoto() })
 	}
 }
