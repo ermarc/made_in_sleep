@@ -6,14 +6,13 @@ import { SmallHeaderComponent } from 'src/app/components/small-header/small-head
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { CameraService } from 'src/app/services/camera.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { GeoMapComponent } from 'src/app/components/geo-map/geo-map.component';
 
 @Component({
 	selector: 'app-profile',
 	templateUrl: './profile.page.html',
 	styleUrls: ['./profile.page.scss'],
 	standalone: true,
-	imports: [IonicModule, CommonModule, FormsModule, SmallHeaderComponent, NavbarComponent, GeoMapComponent]
+	imports: [IonicModule, CommonModule, FormsModule, SmallHeaderComponent, NavbarComponent]
 })
 export class ProfilePage implements OnInit {
 
@@ -41,8 +40,4 @@ export class ProfilePage implements OnInit {
 			.then(() => { this.storage.set('profilePhoto', this.camera.photos[0].webviewPath) })
 			.then(() => { this.searchForAvailableLocalPhoto() })
 	}
-
-
-
-
 }

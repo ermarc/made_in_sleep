@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -6,24 +6,28 @@ import { SmallHeaderComponent } from 'src/app/components/small-header/small-head
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { StorageService } from 'src/app/services/storage.service';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
+import { GeoMapComponent } from 'src/app/components/geo-map/geo-map.component';
 
 @Component({
 	selector: 'app-checkout',
 	templateUrl: './checkout.page.html',
 	styleUrls: ['./checkout.page.scss'],
 	standalone: true,
-	imports: [IonicModule, CommonModule, FormsModule, SmallHeaderComponent, NavbarComponent]
+	imports: [IonicModule, CommonModule, FormsModule, SmallHeaderComponent, NavbarComponent, GeoMapComponent]
 })
 export class CheckoutPage implements OnInit {
 
 	cartPrice: string = '0,00€';
+	geoMapAddress: string = '';
+
+	@ViewChild(GeoMapComponent) jose : any;
 
 	constructor(private storage: StorageService, private prestaShop: PrestaShopService) {
 
 	}
 
 	ngOnInit() {
-		
+		this.soda();
 	}
 
 	ionViewWillEnter() {
@@ -51,5 +55,9 @@ export class CheckoutPage implements OnInit {
 		}
 	}
 
-
+	soda() {
+		setInterval(() => {
+			this.geoMapAddress = this.jose.geoMapAddress;
+		}, 1500)
+	}
 }
