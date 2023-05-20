@@ -8,6 +8,7 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { FloatingButtonComponent } from 'src/app/components/floating-button/floating-button.component';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { Share } from '@capacitor/share';
 
 @Component({
   selector: 'app-product-detail',
@@ -94,7 +95,14 @@ export class ProductDetailPage implements OnInit {
     this.router.navigate(['/notfound']);
   }
 
-  shareProduct() {
-    navigator.clipboard.writeText(`¡Mira lo que he encontrado por Made in Sleep! ${this.productName} por sólo ${this.productPrice}€, ¡compra ya! https://madeinsleep.com/product/${this.productId}`);
+  async shareProduct() {
+    if ((await Promise.resolve(Share.canShare())).value) {
+      await Share.share({
+        title: `Comparte a ${this.productName}`,
+        url: `${this.productImages[0]}`
+      });
+    }
+
+    // navigator.clipboard.writeText(`¡Mira lo que he encontrado por Made in Sleep! ${this.productName} por sólo ${this.productPrice}€, ¡compra ya! https://madeinsleep.com/product/${this.productId}`);
   }
 }

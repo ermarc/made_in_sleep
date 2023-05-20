@@ -44,16 +44,24 @@ export class PrestaShopService {
     return this.http.get('https://marcariza.cat/api/categories?display=[name,%20id]&filter[id]=[3,999]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC');
   }
 
+  getCountries() {
+    return this.http.get('https://marcariza.cat/api/countries?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC&display=[name,id]&language=1&output_format=JSON');
+  }
+
   getCategoryProducts(categoryId : any) {
     return this.http.get(`https://marcariza.cat/api/products/?display=[name,%20id,%20id_default_image]&filter[id_category_default]=[${categoryId}]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`)
   }
 
-  getProductsByCategoryId(categoryId: any) {
-
+  getCapitanSalamiCustomer() {
+    return this.http.get('https://marcariza.cat/api/customers/4/&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC');
   }
 
   getPriceByProductId(productId: any) {
     return this.http.get(`https://marcariza.cat/api/products/${productId}/?display=[price]&output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`);
+  }
+
+  postFullAddress(address: string) {
+    return this.http.post(`https://marcariza.cat/api/addresses?output_format=JSON&ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`, address);
   }
 
   buildFilterArray(arrayToFilter : any) {
@@ -65,6 +73,7 @@ export class PrestaShopService {
 
     return string;
   }
+
 
 
 }

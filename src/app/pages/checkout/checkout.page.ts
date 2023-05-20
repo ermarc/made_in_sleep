@@ -7,6 +7,8 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { StorageService } from 'src/app/services/storage.service';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
 import { GeoMapComponent } from 'src/app/components/geo-map/geo-map.component';
+import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-checkout',
@@ -18,16 +20,27 @@ import { GeoMapComponent } from 'src/app/components/geo-map/geo-map.component';
 export class CheckoutPage implements OnInit {
 
 	cartPrice: string = '0,00€';
-	geoMapAddress: string = '';
+	allCountries : Array<any> = [];
+	formValues : any = {
+		address : '',
+		country : '',
+		dni : '',
+		alias : '',
+		city : ''
+	}
 
 	@ViewChild(GeoMapComponent) jose : any;
 
-	constructor(private storage: StorageService, private prestaShop: PrestaShopService) {
-
+	constructor(private storage: StorageService, private prestaShop: PrestaShopService, private router: Router) {
 	}
+
+	// createForm() {
+	// 	this.formGroup = 
+	// }
 
 	ngOnInit() {
 		this.soda();
+		this.getCountries();
 	}
 
 	ionViewWillEnter() {
@@ -55,9 +68,55 @@ export class CheckoutPage implements OnInit {
 		}
 	}
 
+	validateCheckout() {
+		let count = 0;
+		if (this.formValues.address.length > 0) count++;
+		if (this.formValues.alias.length > 0) count++;
+		if (this.formValues.city.length > 0) count++;
+		if (this.formValues.country > 0) count++;
+		if (this.formValues.country == 6) {
+			if (this.formValues.dni.length == 9 && count == 4) this.submitCheckout();
+		} else {
+			if (count == 4) this.submitCheckout();
+		}
+	}
+
 	soda() {
 		setInterval(() => {
-			this.geoMapAddress = this.jose.geoMapAddress;
+			this.formValues.address = this.jose.geoMapAddress;
 		}, 1500)
+	}
+
+	submitCheckout() {
+		let customerAddress = 
+		`<prestashop xmlns:xlink="http://www.w3.org/1999/xlink">
+			<address>
+				<id_customer>4</id_customer>
+		  		<id_country>${this.formValues.country}</id_country>
+		  		<alias>${this.formValues.alias.slice(0, 31)}</alias>
+		  		<lastname>Salami</lastname>
+		  		<firstname>Capitán</firstname>
+		  		<address1>${this.formValues.address.slice(0, 127)}</address1>
+		 		<city>${this.formValues.city.slice(0, 63)}</city>
+		  		<dni>${this.formValues.dni}</dni>  
+			</address>
+	  	</prestashop>`;
+
+
+		this.prestaShop.postFullAddress(customerAddress).subscribe((response : any) => {
+			console.log("PETICIÓN POST EXITOSA!");
+		}, (error : any) => {
+			console.log("¡MIERDA, HA FALLADO!");
+		});
+
+		this.router.navigate(["/home"]);
+	}
+
+	getCountries() {
+		this.prestaShop.getCountries().subscribe((response : any) => {
+			response.countries.forEach((element : any) => {
+				this.allCountries.push({countryId: element.id, countryName: element.name});
+			})
+		})
 	}
 }

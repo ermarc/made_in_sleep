@@ -15,9 +15,29 @@
 
     <geoMap></geoMap>
 
-    <div class="addressContainer">
-      <textarea class="addressFill" placeholder="Introduzca su dirección, o márquela en el mapa." value={{geoMapAddress}}></textarea>
-    </div>
+    <form class="formCheckout" (ngSubmit)="validateCheckout()">
+      <div class="addressContainer">
+        <textarea name="address" readonly [(ngModel)]="formValues.address" class="addressFill ng-valid ng-touched ng-dirty" placeholder="Introduzca su dirección, o márquela en el mapa." type="text"></textarea>
+      </div>
+
+      <label>Escoja un país (aprenda inglés).</label>
+      <select name="country" [(ngModel)]="formValues.country">
+        <option *ngFor="let country of allCountries" value={{country.countryId}}>{{country.countryName}}</option>
+      </select>
+
+      <label *ngIf="formValues.country == 6">¡Un segundo! ¡Identifíquese!</label>
+      <input class="formInput" name="dni" [(ngModel)]="formValues.dni" *ngIf="formValues.country == 6" placeholder="Su DNI, bolchevique.">
+
+      <label>Rellene con un alias.</label>
+      <input class="formInput" name="alias" required [(ngModel)]="formValues.alias" placeholder="Introduzca un alias.">
+
+      <label>Indique su ciudad.</label>
+      <input class="formInput" name="city" required [(ngModel)]="formValues.city" placeholder="¿Dónde se encuentra?">
+
+      <label style="color: var(--ion-color-secondary);">*Compruebe que todos los campos estén completos.</label>
+      <input class="formInput" type="submit" placeholder="sd" value="¡He terminado!">
+    </form>
+
 
   </ion-content>
 
