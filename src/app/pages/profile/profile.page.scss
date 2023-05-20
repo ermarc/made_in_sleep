@@ -9,7 +9,7 @@
 }
 
 .userImage {
-    min-width: 150px;
+    width: 150px;
     height: 150px;
     background-color: var(--ion-color-secondary);
     border-radius: 100%;
@@ -19,6 +19,7 @@
 
 .userImage::part(image) {
     border-radius: 100%;
+    object-fit: cover;
 }
 
 .userData {
@@ -61,4 +62,13 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-  
+
+.popoverCategory {
+    background-color: var(--ion-color-secondary);
+    border-radius: 14px;
+    padding: 6px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

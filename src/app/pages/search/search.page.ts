@@ -65,7 +65,12 @@ export class SearchPage implements OnInit {
     })
   }
 
+  closePopover() {
+		document.getElementsByTagName('ion-popover')[0].dismiss();
+	}
+
   async getCategoryProducts(categoryId: any) {
+    this.closePopover();
     let productArray : Array<Object> = [];
 
     this.prestaShop.getCategoryProducts(categoryId).subscribe((response : any) => {
@@ -81,5 +86,7 @@ export class SearchPage implements OnInit {
       this.searchStarted = true;
 
     });
+
+    
   }
 }

@@ -3,7 +3,7 @@
 
 	<ion-content [fullscreen]="true">
 		<section class="userInfo">
-			<ion-img (click)="addPhotoToGallery()" class="userImage" src={{userImage}}></ion-img>
+			<ion-img id="triggered" class="userImage" src={{userImage}}></ion-img>
 			<div class="userData">
 				<h1 class="userName">{{userName}}</h1>
 				<h5 class="userDesc">{{userSurname}}</h5>
@@ -13,6 +13,15 @@
 		<div class="userDividingLineContent">
 			<div class="userDividingLine"></div>
 		</div>
+
+		<ion-popover trigger="triggered" [isOpen]="testOpen">
+			<ng-template>
+			  <ion-content class="ion-padding">
+				<h4 class="popoverCategory close" (click)="addPhotoToGallery()">Insertar/modificar</h4>
+				<h4 class="popoverCategory close" (click)="removeProfilePhoto()">Eliminar</h4>
+			  </ion-content>
+			</ng-template>
+		</ion-popover>
 
 	</ion-content>
 

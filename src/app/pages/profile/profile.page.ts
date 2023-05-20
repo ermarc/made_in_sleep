@@ -7,6 +7,7 @@ import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 import { CameraService } from 'src/app/services/camera.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
+import { ViewChild } from '@angular/core';
 
 @Component({
 	selector: 'app-profile',
@@ -20,7 +21,7 @@ export class ProfilePage implements OnInit {
 	userImage: string | undefined = '';
 	userName: string = 'Cargando...';
 	userSurname: string = 'Cargando...';
-	options: any;
+	testOpen : boolean = false;
 
 	constructor(private camera: CameraService, private storage: StorageService, private prestaShop: PrestaShopService) { }
 
@@ -39,10 +40,21 @@ export class ProfilePage implements OnInit {
 	}
 
 
-	addPhotoToGallery() {
-		this.camera.addNewToGallery()
-			// .then(() => { this.storage.set('profilePhoto', this.camera.photos[0].webviewPath) })
-			// .then(() => { this.searchForAvailableLocalPhoto() })
+	async addPhotoToGallery() {
+		this.closePopover();
+		await this.storage.set('profilePhoto', await this.camera.addNewToGallery());
+		await this.searchForAvailableLocalPhoto();
+		
+	}
+
+	async removeProfilePhoto() {
+		this.closePopover();
+		await this.storage.set('profilePhoto', undefined);
+		await this.searchForAvailableLocalPhoto();
+	}
+
+	closePopover() {
+		document.getElementsByTagName('ion-popover')[0].dismiss();
 	}
 
 	getCustomerInfo() {
