@@ -3,6 +3,16 @@
     height: 50px;
     display: flex;
     justify-content: center;
+    pointer-events: none;
+}
+
+.buttonContainer button {
+    pointer-events: all;
+    width: auto;
+    padding: 8px;
+    color: var(--ion-color-primary);
+    border-radius: 8px;
+    font-size: 16px;
 }
 
 .categoryFilterButton {

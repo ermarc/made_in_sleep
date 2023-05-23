@@ -65,7 +65,8 @@ export class SearchPage implements OnInit {
     })
   }
 
-  closePopover() {
+  // Cierra el ION-POPOVER existente.
+	closePopover() {
 		document.getElementsByTagName('ion-popover')[0].dismiss();
 	}
 

@@ -27,3 +27,10 @@
     align-self: center;
     margin-top: 10px;
 }
+
+.closedPage {
+    position: fixed;
+    z-index: 10;
+    height: 100%;
+    backdrop-filter: brightness(20%);
+}

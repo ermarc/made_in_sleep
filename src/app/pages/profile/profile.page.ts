@@ -30,6 +30,10 @@ export class ProfilePage implements OnInit {
 		this.getCustomerInfo();
 	}
 
+	// Busca la fotografía actualmente existente dentro del localStorage.
+	//
+	// En caso de encontrarla, servirá su Base64 como src de la imagen.
+	// En caso de no encontrarla, servirá unknown.png como src de la imagen.
 	async searchForAvailableLocalPhoto() {
 		let userImage = await this.storage.get('profilePhoto');
 		if (userImage) {
@@ -39,7 +43,8 @@ export class ProfilePage implements OnInit {
 		}
 	}
 
-
+	// Llamada al servicio de la cámara para obtener la información de la fotografía sacada dentro del modal.
+	// Procede a actualizar el HTML para mostrar que la foto ha sido actualizada.
 	async addPhotoToGallery() {
 		this.closePopover();
 		await this.storage.set('profilePhoto', await this.camera.addNewToGallery());
@@ -47,16 +52,21 @@ export class ProfilePage implements OnInit {
 		
 	}
 
+	// Elimina la foto de perfil actual en el localStorage.
+	// Procede a actualizar el HTML para mostrar que la foto ha sido eliminada.
 	async removeProfilePhoto() {
 		this.closePopover();
 		await this.storage.set('profilePhoto', undefined);
 		await this.searchForAvailableLocalPhoto();
 	}
 
+	// Cierra el ION-POPOVER existente.
 	closePopover() {
 		document.getElementsByTagName('ion-popover')[0].dismiss();
 	}
 
+	// Llamada a la API para obtener información de cliente.
+	// Está hardcodeado para obtener siempre información del Capitán Salami. 
 	getCustomerInfo() {
 		this.prestaShop.getCapitanSalamiCustomer().subscribe((response:any) => {
 			this.userName = response.customer.firstname;

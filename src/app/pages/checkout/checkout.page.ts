@@ -34,12 +34,9 @@ export class CheckoutPage implements OnInit {
 	constructor(private storage: StorageService, private prestaShop: PrestaShopService, private router: Router) {
 	}
 
-	// createForm() {
-	// 	this.formGroup = 
-	// }
 
 	ngOnInit() {
-		this.soda();
+		this.setAddressUpdaterInterval();
 		this.getCountries();
 	}
 
@@ -60,7 +57,7 @@ export class CheckoutPage implements OnInit {
 			Promise.all(arrayPromises).then(x => {
 				x.forEach((element, index) => {
 					totalPrice += Number(element.products[0].price) * array[index].productQuantity;
-					if (index == x.length-1) this.cartPrice = (totalPrice + '€').replace(".", ",");
+					if (index == x.length-1) this.cartPrice = (Math.round(totalPrice * 100) / 100 + '€').replace(".", ",");
 				});
 			})
 		} else {
@@ -81,7 +78,7 @@ export class CheckoutPage implements OnInit {
 		}
 	}
 
-	soda() {
+	setAddressUpdaterInterval() {
 		setInterval(() => {
 			this.formValues.address = this.jose.geoMapAddress;
 		}, 1500)
@@ -102,13 +99,8 @@ export class CheckoutPage implements OnInit {
 			</address>
 	  	</prestashop>`;
 
-
-		this.prestaShop.postFullAddress(customerAddress).subscribe((response : any) => {
-			console.log("PETICIÓN POST EXITOSA!");
-		}, (error : any) => {
-			console.log("¡MIERDA, HA FALLADO!");
-		});
-
+		this.prestaShop.postFullAddress(customerAddress).subscribe();
+		this.resetCart();
 		this.router.navigate(["/home"]);
 	}
 
@@ -118,5 +110,9 @@ export class CheckoutPage implements OnInit {
 				this.allCountries.push({countryId: element.id, countryName: element.name});
 			})
 		})
+	}
+
+	async resetCart() {
+		await this.storage.set('cartProducts', null);
 	}
 }

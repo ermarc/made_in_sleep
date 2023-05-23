@@ -8,36 +8,19 @@ import { ProductListingComponent } from 'src/app/components/product-listing/prod
 import { PrestaShopService } from 'src/app/services/presta-shop.service';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.page.html',
-    styleUrls: ['./home.page.scss'],
-    standalone: true,
-    imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent, ProductListingComponent]
+	selector: 'app-home',
+	templateUrl: './home.page.html',
+	styleUrls: ['./home.page.scss'],
+	standalone: true,
+	imports: [IonicModule, CommonModule, FormsModule, MainHeaderComponent, NavbarComponent, ProductListingComponent]
 })
 export class HomePage implements OnInit {
-	welcomeMessage : string = '';
-	products : Array<Object> = [];
+	welcomeMessage: string = '';
+	products: Array<Object> = [];
 
-  	constructor(public prestaShop: PrestaShopService) { }
+	constructor(public prestaShop: PrestaShopService) { }
 
-  	ngOnInit() { }
-
-	async getProducts() {
-		let productArray : Array<Object> = [];
-
-		this.prestaShop.getProducts().subscribe((response : any) => {
-			response.products.forEach((product : any) => {
-				productArray.push(
-					{
-						name: product.name,
-						id: product.id, 
-						productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`,
-					});
-
-			});
-
-			this.products = productArray;
-		});
+	ngOnInit() {
 	}
 
 	ionViewWillEnter() {
@@ -45,8 +28,26 @@ export class HomePage implements OnInit {
 		this.getProducts();
 	}
 
+	// Llamada a la API para obtención de todos los productos.
+	async getProducts() {
+		let productArray: Array<Object> = [];
+
+		this.prestaShop.getProducts().subscribe((response: any) => {
+			response.products.forEach((product: any) => {
+				productArray.push(
+					{
+						name: product.name,
+						id: product.id,
+						productImageUrl: `https://marcariza.cat/api/images/products/${product.id}/${product.id_default_image}?ws_key=AAPPRHCE1V5PTNV3ZY8Q3L45N1UTZ9DC`,
+					});
+			});
+			this.products = productArray;
+		});
+	}
+
+	// Colección de mensajes random para mostrar en la caja de bienvenida.
 	pickRandomWelcomeMessage() {
-		let textOptions : Array<string> = [
+		let textOptions: Array<string> = [
 			'¿Crisis materialista?<br>¡Lo que necesita, aquí!',
 			'¿Dinero sin salida?<br>¡Blanqueo sin precedentes!',
 			'¿Cómo, ya en los 40?<br>¡Sin problema, barra libre!',
@@ -60,11 +61,11 @@ export class HomePage implements OnInit {
 			'¿Quiere escuchar un chiste?<br>¡Estatuto de los Becarios!',
 			'¿Uh? ¿Cómo es posible?<br>¿Este sitio sigue siendo rentable?',
 			'¡Mezcla de algodón y poliéster!<br>¿De dónde? ¡Buena pregunta!',
-			'¡Ultra absorbente! ¿Para qué?<br> Usted verá... ✊🏼🍌🍌💦💦💦',
+			'¡Ultra absorbente! ¿Para qué?<br> Usted verá...',
 			'¡Rescatamos su confort y energía!<br>¡Tal como Europa con nosotros!'
 		]
-		
+
 		this.welcomeMessage = textOptions[Math.floor(Math.random() * textOptions.length)];
-  	}
+	}
 
 }

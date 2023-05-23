@@ -29,6 +29,11 @@
     width: 20%;
 }
 
+.navbarItem * {
+    pointer-events: none;
+    user-select: none;
+}
+
 .navbarItemImage {
     height: 25px;
     text-align: center;

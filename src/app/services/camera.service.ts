@@ -13,7 +13,6 @@ export class CameraService {
   constructor() { }
 
   public async addNewToGallery() {
-    // Take a photo
     const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.Uri,
       source: CameraSource.Camera,
@@ -21,31 +20,10 @@ export class CameraService {
     });
 
     return await this.savePicture(capturedPhoto);
-  
-    // this.photos.unshift({
-    //   filepath: "soon...",
-    //   webviewPath: capturedPhoto.webPath
-    // });
   }
 
   private async savePicture(photo: Photo) {
     return await this.readAsBase64(photo);
-
-    // console.log(base64Data);
-
-    // navigator.clipboard.writeText(base64Data);
-  
-    // const fileName = new Date().getTime() + '.jpeg';
-    // const savedFile = await Filesystem.writeFile({
-    //   path: fileName,
-    //   data: base64Data,
-    //   directory: Directory.Data
-    // });
-  
-    // return {
-    //   filepath: fileName,
-    //   webviewPath: photo.webPath
-    // };
   }
 
   private async readAsBase64(photo: Photo) {

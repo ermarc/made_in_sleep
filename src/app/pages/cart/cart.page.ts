@@ -63,7 +63,7 @@ export class CartPage implements OnInit {
 			Promise.all(arrayPromises).then(x => {
 				x.forEach((element, index) => {
 					totalPrice += Number(element.products[0].price) * array[index].productQuantity;
-					if (index == x.length-1) this.cartPrice = (totalPrice + '€').replace(".", ",");
+					if (index == x.length-1) this.cartPrice = (Math.round(totalPrice * 100) / 100 + '€').replace(".", ",");
 				});
 			})
 		} else {
